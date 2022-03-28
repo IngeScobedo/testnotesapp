@@ -25,6 +25,7 @@ const AddNoteForm = ({ setShowModal }) => {
     dispatch(addNote(newNote))
     setShowModal(false);
     };
+    console.log(watch('content'))
 
   return (
     <div className=" pt-6">
@@ -47,6 +48,7 @@ const AddNoteForm = ({ setShowModal }) => {
             }
             type="text"
             placeholder="Ingresar Título"
+            autoFocus={true}
           />
           {
             errors.title &&
@@ -78,10 +80,10 @@ const AddNoteForm = ({ setShowModal }) => {
         </div>
         <div className="flex items-center justify-end p-[14px] mt-8 border-t border-solid border-border-gray rounded-b">
           <button
-            className="bg-[#3554D1] text-white text-subtitle px-[22px] py-[10px] rounded-[5px] shadow hover:shadow-lg outline-none font-medium"
+            className="bg-[#3554D1] text-white text-subtitle px-[22px] py-[10px] rounded-[5px] shadow hover:shadow-lg outline-none font-medium hover:bg-blue-primary active:bg-blue-primary focus:bg-blue-primary"
             type="submit"
           >
-            Save Changes
+            Añadir Nota
           </button>
         </div>
       </form>

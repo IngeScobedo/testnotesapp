@@ -3,14 +3,15 @@ import { FiEdit2 } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
 import { FiPlusCircle } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
-import { useState } from "react";
+import { memo, useState } from "react";
 import AddNoteForm from "./AddNoteForm";
 import EditNoteForm from "./EditNoteForm";
 import { deleteNote } from "../../reducers/slices/notes";
 
-const Note = ({ id, title, content }) => {
+const Note = memo(({ id, title, content }) => {
+  console.log("note render");
   const [showModal, setShowModal] = useState(false);
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const defaultNote = {
     id,
     title,
@@ -19,27 +20,37 @@ const Note = ({ id, title, content }) => {
 
   const handleDelete = () => {
     dispatch(deleteNote(id));
-    };
+  };
   return (
     <>
-      <div className="w-full max-w-[448px] flex flex-col bg-white rounded-md">
+      <div className="w-full flex flex-col md:max-w-[448px] bg-white rounded-md">
         <div className="w-full flex justify-between text-primary-font-color font-medium px-4 pt-4 ">
-          <h2>{title}</h2>
+            <h2 className="max-w-[320px] max-h-10 break-words truncate">{title}</h2>
           <div className="flex justify-center gap-3">
-            <button className="rounded-full w-[34px] h-[34px] hover:bg-gray-light flex justify-center items-center" onClick={() => setShowModal(true)}>
+            <button
+              className="rounded-full w-[34px] h-[34px] hover:bg-gray-light flex justify-center items-center"
+              onClick={() => setShowModal(true)}
+            >
               <FiEdit2 color="#6E6B7B" size={"24px"} />
             </button>
-            <button className="rounded-full w-[34px] h-[34px] hover:bg-gray-light flex justify-center items-center"  onClick={handleDelete} >
-                <MdClose color="#6E6B7B" size={"24px"} />
+            <button
+              className="rounded-full w-[34px] h-[34px] hover:bg-gray-light flex justify-center items-center"
+              onClick={handleDelete}
+            >
+              <MdClose color="#6E6B7B" size={"24px"} />
             </button>
           </div>
         </div>
         <hr className="w-full text-gray-light mt-[10px] mb-[15px]" />
-        <div className="w-full px-4 pb-4 text-gray">
-          <p>{content}</p>
+        <div className="max-w-[448px] h-auto px-4 pb-4 text-gray text-ellipsis overflow-">
+          <p className="max-w-[425px] break-words" >{content}</p>
         </div>
       </div>
-      <div>
+      <div className={
+        showModal
+          ? ""
+          : "hidden"
+      } >
         {showModal ? (
           <>
             <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -60,7 +71,10 @@ const Note = ({ id, title, content }) => {
                     </button>
                   </div>
                   {/*body*/}
-                  <EditNoteForm setShowModal={setShowModal} defaultNote={defaultNote} />
+                  <EditNoteForm
+                    setShowModal={setShowModal}
+                    defaultNote={defaultNote}
+                  />
                   {/*footer*/}
                 </div>
               </div>
@@ -71,6 +85,6 @@ const Note = ({ id, title, content }) => {
       </div>
     </>
   );
-};
+});
 
 export default Note;

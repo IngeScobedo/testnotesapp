@@ -43,7 +43,7 @@ const EditNoteForm = ({ setShowModal, defaultNote }) => {
               },
             })}
             defaultValue={title}
-            className="p-l-[17px] p-t-[14px] p-l-[12px] border border-border-gray-light rounded-lg text-[16px] text-gray-light focus:outline-none focus:border-gray placeholder-gray-light"
+            className="p-l-[17px] p-t-[14px] p-l-[12px] border border-border-gray-light rounded-lg text-[16px] text-gray-light focus:outline-none focus:ring focus:border-gray placeholder-gray-light"
             type="text"
             placeholder="Ingresar Título"
           />

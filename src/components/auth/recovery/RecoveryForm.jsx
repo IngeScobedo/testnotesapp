@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +21,10 @@ const RecoveryForm = () => {
     watch,
     formState: { errors },
   } = useForm(); // eslint-disable-line
+
+  useEffect(() => {
+    dispatch(loginError(null))
+  }, [])
 
   const onRecovery = async (e) => {
     console.log(e);

@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Route, Routes, useNavigate } from "react-router-dom"
 import AuthRouter from "../routers/AuthRouter"
 import NotesRouter from "../routers/NotesRouter"

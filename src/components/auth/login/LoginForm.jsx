@@ -44,6 +44,9 @@ const LoginForm = () => {
             ? "La contraseña ingresada es incorrecta."
             : "Ocurrió un error inesperado."
       dispatch(loginError(errorMessage))
+      setTimeout(() => {
+        dispatch(loginError(null))
+      }, 2500)
     }
   };
 
