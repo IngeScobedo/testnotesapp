@@ -5,14 +5,11 @@ import { logout } from '../../reducers/slices/login'
 
 
 const NavBar = () => {
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   const username = useSelector(state => state.login.user.name)
 
   const handleLogOut = (e) => {
     e.preventDefault()
-    sessionStorage.clear()
-    localStorage.clear()
     dispatch(logout())
   }
 

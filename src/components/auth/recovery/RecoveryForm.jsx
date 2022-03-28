@@ -18,23 +18,20 @@ const RecoveryForm = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm(); // eslint-disable-line
+  } = useForm();
 
   useEffect(() => {
     dispatch(loginError(null))
   }, [])
 
   const onRecovery = async (e) => {
-    console.log(e);
     dispatch(loginPending());
     const data = {
       email: e.email,
     };
     try {
       const payload = await recovery(data).unwrap();
-      console.log(payload);
       dispatch(recoverySuccess(payload));
       setTimeout(() => {
         navigate("/auth/reset_password", { replace: true });

@@ -1,12 +1,10 @@
-import { memo, useEffect, useState } from "react";
+import { memo } from "react";
 import { useSelector } from "react-redux";
 import Note from "./Note";
 
 const NotesLayout = memo(() => {
-  console.log("render NotesLayout");
   const { notes } = useSelector((state) => state.notes);
   const { user } = useSelector((state) => state.login);
-
   const userNotes = notes.filter((note) => note.user === user.name);
 
   return (

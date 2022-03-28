@@ -9,7 +9,6 @@ import EditNoteForm from "./EditNoteForm";
 import { deleteNote } from "../../reducers/slices/notes";
 
 const Note = memo(({ id, title, content }) => {
-  console.log("note render");
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
   const defaultNote = {
@@ -25,7 +24,9 @@ const Note = memo(({ id, title, content }) => {
     <>
       <div className="w-full flex flex-col md:max-w-[448px] bg-white rounded-md">
         <div className="w-full flex justify-between text-primary-font-color font-medium px-4 pt-4 ">
-            <h2 className="max-w-[320px] max-h-10 break-words truncate">{title}</h2>
+          <h2 className="max-w-[320px] max-h-10 break-words truncate">
+            {title}
+          </h2>
           <div className="flex justify-center gap-3">
             <button
               className="rounded-full w-[34px] h-[34px] hover:bg-gray-light flex justify-center items-center"
@@ -43,14 +44,10 @@ const Note = memo(({ id, title, content }) => {
         </div>
         <hr className="w-full text-gray-light mt-[10px] mb-[15px]" />
         <div className="max-w-[448px] h-auto px-4 pb-4 text-gray text-ellipsis overflow-">
-          <p className="max-w-[425px] break-words" >{content}</p>
+          <p className="max-w-[425px] break-words">{content}</p>
         </div>
       </div>
-      <div className={
-        showModal
-          ? ""
-          : "hidden"
-      } >
+      <div className={showModal ? "" : "hidden"}>
         {showModal ? (
           <>
             <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
