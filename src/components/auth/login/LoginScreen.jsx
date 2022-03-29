@@ -10,6 +10,7 @@ const LoginScreen = () => {
   }, [])
 
   return (
+    <>
     <div className="w-1/3 max-w-[407px] flex flex-col bg-white p-[30px] rounded-md">
       <h3 className="text-title font-medium text-primary-font-color mb-2">
         ¡Bienvenido de nuevo!
@@ -21,6 +22,7 @@ const LoginScreen = () => {
       <LoginForm />
 
     </div>
+    </>
   )
 }
 
