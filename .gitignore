@@ -12,8 +12,6 @@ dist
 dist-ssr
 *.local
 .env
-postcss.config.js
-tailwind.config.js
 .eslintrc.js
 
 # Editor directories and files
