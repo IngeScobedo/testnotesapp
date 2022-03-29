@@ -1,16 +1,26 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { resetIsChangingPassword } from '../../../reducers/slices/login'
+import SuccessfullAlert from '../SuccessfullAlert'
 import LoginForm from './LoginForm'
 
 const LoginScreen = () => {
   const dispatch = useDispatch()
+  const { isChangeSuccess } = useSelector((state) => state.login)
   useEffect(() => {
-    dispatch(resetIsChangingPassword())
+    setTimeout(() => {
+      dispatch(resetIsChangingPassword())
+    }
+    , 2500)
   }, [])
 
   return (
     <>
+    <div>
+      {
+        isChangeSuccess && <SuccessfullAlert />
+      }
+    </div>
     <div className="w-1/3 max-w-[407px] flex flex-col bg-white p-[30px] rounded-md">
       <h3 className="text-title font-medium text-primary-font-color mb-2">
         ¡Bienvenido de nuevo!
