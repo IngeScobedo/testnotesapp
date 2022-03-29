@@ -47,6 +47,7 @@ const loginSlice = createSlice({
     },
     resetIsChangingPassword: (state, action) => {
       state.isChangingPassword = false;
+      state.isChangeSuccess = null;
       state.token = null;
     },
     recoveryError: (state, action) => {
