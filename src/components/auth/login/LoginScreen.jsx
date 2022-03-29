@@ -1,6 +1,13 @@
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { resetIsChangingPassword } from '../../../reducers/slices/login'
 import LoginForm from './LoginForm'
 
 const LoginScreen = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(resetIsChangingPassword())
+  }, [])
 
   return (
     <div className="w-1/3 max-w-[407px] flex flex-col bg-white p-[30px] rounded-md">

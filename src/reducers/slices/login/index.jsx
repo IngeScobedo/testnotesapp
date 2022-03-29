@@ -45,6 +45,10 @@ const loginSlice = createSlice({
     resetRecoverySuccess: (state, action) => {
       state.isRecoverySuccess = null;
     },
+    resetIsChangingPassword: (state, action) => {
+      state.isChangingPassword = false;
+      state.token = null;
+    },
     recoveryError: (state, action) => {
       state.isLoading = false;
       state.recoveryError = action.payload;
@@ -68,6 +72,7 @@ export const {
   recoveryError,
   changeSuccess,
   resetRecoverySuccess,
+  resetIsChangingPassword
 } = loginSlice.actions;
 
 export default loginSlice.reducer;

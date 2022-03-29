@@ -4,9 +4,11 @@ import {
   loginError,
   loginPending,
   changeSuccess,
+  resetRecoverySuccess,
 } from "../../../reducers/slices/login";
 import ErrorMessage from "../ErrorMessage";
 import { useResetMutation } from "../../../reducers/slices/login/login";
+import { useEffect } from "react";
 
 const ResetPasswordForm = () => {
   const [reset] = useResetMutation();
@@ -54,8 +56,15 @@ const ResetPasswordForm = () => {
         dispatch(changeSuccess());
       }
       dispatch(loginError(errorMessage));
+      setTimeout(() => {
+        dispatch(loginError(null));
+      }, 2500);
     }
   };
+
+  useEffect(()=>{
+    dispatch(resetRecoverySuccess())
+  }, [])
 
   return (
     <form onSubmit={handleSubmit(onReset)} className="flex flex-col w-full">
@@ -75,9 +84,9 @@ const ResetPasswordForm = () => {
             },
             pattern: {
               value:
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/,
+              /^(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/,
               message:
-                "La contraseña debe tener al menos una letra mayúscula, una letra minúscula, un número y un caracter especial",
+                "La contraseña debe tener al menos 8 caracteres, al menos una minúscula y al menos una mayúscula.",
             },
           })}
           autoComplete="off"
@@ -87,8 +96,8 @@ const ResetPasswordForm = () => {
           placeholder={"Ingresar nueva contraseña"}
           className={
             errors.newPassword || error
-              ? "mt-1 mb-5 w-full py-2 px-3 border border-red-primary rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-red-primary text-text text-red-primary font-normal"
-              : "mt-1 mb-5 w-full py-2 px-3 border border-border-gray-light rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 text-text text-border-gray-light font-normal placeholder-border-gray-light"
+              ? "mt-1 w-full py-2 px-3 border border-red-primary rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-red-primary text-text text-red-primary font-normal"
+              : "mt-1 w-full py-2 px-3 border border-border-gray-light rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 text-text text-border-gray-light font-normal placeholder-border-gray-light"
           }
         />
         {errors.newPassword && errors.newPassword.message && (
@@ -96,7 +105,7 @@ const ResetPasswordForm = () => {
         )}
         {error && <ErrorMessage message={error} />}
       </div>
-      <div className="">
+      <div className="mt-5">
         <div className="w-full flex justify-between">
           <label className="inline-block text-text font-medium text-gray">
             Confirmar contraseña

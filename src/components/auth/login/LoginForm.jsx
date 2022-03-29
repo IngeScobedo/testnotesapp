@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import ErrorMessage from "../ErrorMessage";
 import { loginError, loginPending, loginSuccess } from "../../../reducers/slices/login";
 import { useLoginMutation } from "../../../reducers/slices/login/login";
-import { usersSuccess } from "../../../reducers/slices/users";
 
 const LoginForm = () => {
   const navigate = useNavigate()
@@ -31,7 +30,6 @@ const LoginForm = () => {
     try {
       const payload = await login(data).unwrap()
       dispatch(loginSuccess(payload))
-      dispatch(usersSuccess(payload))
       setTimeout(() => {
         navigate("/", { replace: true })
       }, 2500)
