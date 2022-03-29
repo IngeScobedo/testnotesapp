@@ -97,7 +97,7 @@ const ResetPasswordForm = () => {
           className={
             errors.newPassword || error
               ? "mt-1 w-full py-2 px-3 border border-red-primary rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-red-primary text-text text-red-primary font-normal"
-              : "mt-1 w-full py-2 px-3 border border-border-gray-light rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 text-text text-border-gray-light font-normal placeholder-border-gray-light"
+              : "mt-1 w-full py-2 px-3 border border-border-gray-light rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 text-text text-primary-font-color font-normal placeholder-border-gray-light"
           }
         />
         {errors.newPassword && errors.newPassword.message && (
@@ -126,7 +126,7 @@ const ResetPasswordForm = () => {
           className={
             error === "Las contraseñas no coinciden" || errors.repeatPassword
               ? "mt-1 w-full py-2 px-3 border border-red-primary rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-red-primary text-text text-red-primary font-normal"
-              : "mt-1 w-full py-2 px-3 border border-border-gray-light rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 text-text text-border-gray-light placeholder-border-gray-light font-normal"
+              : "mt-1 w-full py-2 px-3 border border-border-gray-light rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 text-text text-primary-font-color placeholder-border-gray-light font-normal"
           }
         />
         {error === "Las contraseñas no coinciden" && (

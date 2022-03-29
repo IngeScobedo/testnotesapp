@@ -34,7 +34,7 @@ const LoginForm = () => {
       dispatch(loginSuccess(payload));
       setTimeout(() => {
         navigate("/", { replace: true });
-      }, 2500);
+      }, 1000);
     } catch (error) {
       const errorMessage =
         error.data.err === "There isn't a user with that email"
@@ -77,7 +77,7 @@ const LoginForm = () => {
             errors.email ||
             error === "El correo electrónico no está asociado a ninguna cuenta."
               ? "mt-1 w-full py-2 px-3 border border-red-primary rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-red-primary text-text text-red-primary font-normal"
-              : "mt-1 w-full py-2 px-3 border border-border-gray-light rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 text-text text-border-gray-light font-normal"
+              : "mt-1 w-full py-2 px-3 border border-border-gray-light rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 text-text text-primary-font-color font-normal"
           }
         />
         {errors.email && errors.email.message && (
@@ -126,7 +126,7 @@ const LoginForm = () => {
             errors.password ||
             error === "La contraseña ingresada es incorrecta."
               ? "mt-1 w-full py-2 px-3 border border-red-primary rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-red-primary text-text text-red-primary font-normal"
-              : "mt-1 w-full py-2 px-3 border border-border-gray-light rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 text-text text-border-gray-light font-normal"
+              : "mt-1 w-full py-2 px-3 border border-border-gray-light rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 text-text text-primary-font-color font-normal"
           }
         />
         {errors.password && errors.password.message && (

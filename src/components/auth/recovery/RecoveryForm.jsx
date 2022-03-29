@@ -35,7 +35,7 @@ const RecoveryForm = () => {
       dispatch(recoverySuccess(payload));
       setTimeout(() => {
         navigate("/auth/reset_password", { replace: true });
-      }, 2500);
+      }, 1000);
     } catch (error) {
       const errorMessage =
         error.data.err === "There isn't a user with that email" &&
@@ -75,7 +75,7 @@ const RecoveryForm = () => {
           className={
             errors.email || error
               ? "border border-red-primary focus:border-red-primary focus:outline-none focus:shadow-outline-red-primary appearance-none w-full py-2 px-4 text-text leading-normal rounded-lg text-red-primary"
-              : "border border-border-gray-light placeholder-border-gray-light focus:outline-none focus:shadow-outline-blue  appearance-none w-full py-2 px-4 text-text text-border-gray-light leading-normal rounded-lg"
+              : "border border-border-gray-light placeholder-border-gray-light focus:outline-none focus:shadow-outline-blue  appearance-none w-full py-2 px-4 text-text text-primary-font-color leading-normal rounded-lg"
           }
         />
         {errors.email && <ErrorMessage message={errors.email.message} />}
