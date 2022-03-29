@@ -1,11 +1,7 @@
 
 # Notes App
 
-Para crear la aplicación use Vite
-
-
-
-
+Para crear la aplicación use Vite con el template de React.
 
 ## Correr en local
 
