@@ -79,8 +79,10 @@ const RecoveryForm = () => {
           }
         />
         {errors.email && <ErrorMessage message={errors.email.message} />}
+        {
+          (error === "El correo electrónico no está asociado a ninguna cuenta.") && <ErrorMessage message={'Ingresa un correo electrónico válido.'} />
+        }
         {error && <ErrorMessage message={error} />}
-        {}
       </div>
       <button className={
         isRecoverySuccess
