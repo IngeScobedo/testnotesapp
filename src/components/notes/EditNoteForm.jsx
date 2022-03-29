@@ -48,6 +48,7 @@ const EditNoteForm = ({ setShowModal, defaultNote }) => {
             }
             type="text"
             placeholder="Ingresar Título"
+            autoFocus={true}
           />
           {
             errors.title &&

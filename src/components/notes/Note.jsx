@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { FiPlusCircle } from "react-icons/fi";
 import { IoMdClose } from "react-icons/io";
 import { memo, useState } from "react";
-import AddNoteForm from "./AddNoteForm";
 import EditNoteForm from "./EditNoteForm";
 import { deleteNote } from "../../reducers/slices/notes";
 
@@ -58,7 +57,7 @@ const Note = memo(({ id, title, content }) => {
                   <div className="flex items-center justify-between p-[15px] bg-background-color rounded-t-lg">
                     <div className="flex items-center gap-3">
                       <FiPlusCircle size={"18px"} color="black" />
-                      <h3 className="text-title font-semibold">Agregar Nota</h3>
+                      <h3 className="text-title font-semibold">Editar Nota</h3>
                     </div>
                     <button
                       className="relative left-[20px] top-[-21px] shadow flex justify-center items-center bg-white w-[34px] h-[34px] rounded-md text-black text-3xl leading-none font-semibold outline-none focus:outline-none"
