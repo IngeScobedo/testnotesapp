@@ -6,6 +6,7 @@ import {
   loginError,
   loginPending,
   recoverySuccess,
+  resetRecoverySuccess,
 } from "../../../reducers/slices/login";
 import { useRecoveryMutation } from "../../../reducers/slices/login/login";
 import ErrorMessage from "../ErrorMessage";
@@ -20,10 +21,6 @@ const RecoveryForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  useEffect(() => {
-    dispatch(loginError(null))
-  }, [])
 
   const onRecovery = async (e) => {
     dispatch(loginPending());
@@ -46,6 +43,14 @@ const RecoveryForm = () => {
       }, 2500);
     }
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetRecoverySuccess())
+      dispatch(loginError(null));
+    }
+  }, [])
+
   return (
     <form onSubmit={handleSubmit(onRecovery)} className="flex flex-col w-full mb-4">
       <div className="mb-4 mt-5">

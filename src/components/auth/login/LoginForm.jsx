@@ -8,6 +8,7 @@ import {
   loginSuccess,
 } from "../../../reducers/slices/login";
 import { useLoginMutation } from "../../../reducers/slices/login/login";
+import { useEffect } from "react";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -48,6 +49,12 @@ const LoginForm = () => {
       }, 2500);
     }
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(loginError(null));
+    }
+  }, [])
 
   return (
     <form

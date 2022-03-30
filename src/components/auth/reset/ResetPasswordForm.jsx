@@ -4,11 +4,9 @@ import {
   loginError,
   loginPending,
   changeSuccess,
-  resetRecoverySuccess,
 } from "../../../reducers/slices/login";
 import ErrorMessage from "../ErrorMessage";
 import { useResetMutation } from "../../../reducers/slices/login/login";
-import { useEffect } from "react";
 
 const ResetPasswordForm = () => {
   const [reset] = useResetMutation();
@@ -61,11 +59,6 @@ const ResetPasswordForm = () => {
       }, 2500);
     }
   };
-
-  useEffect(()=>{
-    dispatch(resetRecoverySuccess())
-  }, [])
-
   return (
     <form onSubmit={handleSubmit(onReset)} className="flex flex-col w-full">
       <div className="">

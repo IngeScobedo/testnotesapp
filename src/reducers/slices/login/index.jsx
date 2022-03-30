@@ -39,7 +39,8 @@ const loginSlice = createSlice({
     recoverySuccess: (state, action) => {
       state.isLoading = false;
       state.error = null;
-      (state.isRecoverySuccess = true), (state.token = action.payload.token);
+      state.isRecoverySuccess = true
+      state.token = action.payload.token;
       state.isChangingPassword = true;
     },
     resetRecoverySuccess: (state, action) => {
