@@ -1,19 +1,14 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import useLogin from "../../../hooks/useLogin";
 import {
   loginError,
-  loginPending,
-  recoverySuccess,
-  resetRecoverySuccess,
+  resetRecoverySuccess
 } from "../../../reducers/slices/login";
-import { useRecoveryMutation } from "../../../reducers/slices/login/login";
 import ErrorMessage from "../ErrorMessage";
 
-const RecoveryForm = () => {
-  const navigate = useNavigate();
-  const [recovery] = useRecoveryMutation();
+const RecoveryForm = () => {  
   const dispatch = useDispatch();
   const { error, isRecoverySuccess, isLoading } = useSelector(state => state.login)
   const {
@@ -22,27 +17,7 @@ const RecoveryForm = () => {
     formState: { errors },
   } = useForm();
 
-  const onRecovery = async (e) => {
-    dispatch(loginPending());
-    const data = {
-      email: e.email,
-    };
-    try {
-      const payload = await recovery(data).unwrap();
-      dispatch(recoverySuccess(payload));
-      setTimeout(() => {
-        navigate("/auth/reset_password", { replace: true });
-      }, 1000);
-    } catch (error) {
-      const errorMessage =
-        error.data.err === "There isn't a user with that email" &&
-        "El correo electrónico no está asociado a ninguna cuenta.";
-      dispatch(loginError(errorMessage));
-      setTimeout(() => {
-        dispatch(loginError(null));
-      }, 2500);
-    }
-  };
+  const { onRecovery } = useLogin()
 
   useEffect(() => {
     return () => {

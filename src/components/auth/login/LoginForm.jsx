@@ -1,20 +1,13 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { loginError } from "../../../reducers/slices/login";
+import useLogin from "../../../hooks/useLogin";
 import ErrorMessage from "../ErrorMessage";
-import {
-  loginError,
-  loginPending,
-  loginSuccess,
-} from "../../../reducers/slices/login";
-import { useLoginMutation } from "../../../reducers/slices/login/login";
-import { useEffect } from "react";
 
 const LoginForm = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [login] = useLoginMutation();
-
   const { error, isAuthenticated, isLoading } = useSelector(
     (state) => state.login
   );
@@ -24,31 +17,7 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm();
 
-  const onLogin = async (e) => {
-    dispatch(loginPending());
-    const data = {
-      email: e.email,
-      password: e.password,
-    };
-    try {
-      const payload = await login(data).unwrap();
-      dispatch(loginSuccess(payload));
-      setTimeout(() => {
-        navigate("/", { replace: true });
-      }, 1000);
-    } catch (error) {
-      const errorMessage =
-        error.data.err === "There isn't a user with that email"
-          ? "El correo electrónico no está asociado a ninguna cuenta."
-          : error.data.err === "Incorrect password"
-          ? "La contraseña ingresada es incorrecta."
-          : "Ocurrió un error inesperado.";
-      dispatch(loginError(errorMessage));
-      setTimeout(() => {
-        dispatch(loginError(null));
-      }, 2500);
-    }
-  };
+  const { onLogin } = useLogin()
 
   useEffect(() => {
     return () => {
