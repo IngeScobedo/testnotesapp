@@ -10,8 +10,7 @@ const LoginScreen = () => {
   useEffect(() => {
     setTimeout(() => {
       dispatch(resetIsChangingPassword())
-    }
-    , 2500)
+    }, 2500)
   }, [])
 
   return (

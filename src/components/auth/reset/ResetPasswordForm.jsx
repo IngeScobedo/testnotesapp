@@ -1,64 +1,21 @@
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  loginError,
-  loginPending,
-  changeSuccess,
-} from "../../../reducers/slices/login";
+import { useSelector } from "react-redux";
 import ErrorMessage from "../ErrorMessage";
-import { useResetMutation } from "../../../reducers/slices/login/login";
+import useLogin from "../../../hooks/useLogin";
 
 const ResetPasswordForm = () => {
-  const [reset] = useResetMutation();
-  const dispatch = useDispatch();
 
-  const { error, isLoading, token, isChangeSuccess } = useSelector(
+  const { error, isLoading, isChangeSuccess } = useSelector(
     (state) => state.login
   );
   const {
-    watch,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  
+  const { onReset } = useLogin()
 
-  const validatePasswords = (value) => {
-    const password = value.repeatPassword;
-    if (password === watch("newPassword")) {
-      return true;
-    }
-    if (password !== watch("newPassword")) {
-      return false;
-    }
-  };
-
-  const onReset = async (e) => {
-    dispatch(loginPending());
-    if (!validatePasswords(e)) {
-      dispatch(loginError("Las contraseñas no coinciden"));
-      return;
-    }
-    const data = {
-      password: e.newPassword,
-      token: token,
-    };
-    try {
-      await reset(data).unwrap();
-    } catch (error) {
-      const errorMessage =
-        error.data.err ===
-          "The new password can't be the same as the old password" &&
-        "La contraseña nueva no puede ser igual a la anterior.";
-
-      if (error.data === "ok") {
-        dispatch(changeSuccess());
-      }
-      dispatch(loginError(errorMessage));
-      setTimeout(() => {
-        dispatch(loginError(null));
-      }, 2500);
-    }
-  };
   return (
     <form onSubmit={handleSubmit(onReset)} className="flex flex-col w-full">
       <div className="">
